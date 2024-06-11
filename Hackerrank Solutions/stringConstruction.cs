@@ -14,6 +14,7 @@ using System;
 
 class Result
 {
+    public int Length { get; }
 
     /*
      * Complete the 'stringConstruction' function below.
@@ -25,30 +26,31 @@ class Result
     public static int stringConstruction(string s)
     {
         int cost = 0;
-        char[] str = s.ToCharArray();
+        char[] product = s.ToCharArray();
         List<char> strComparison = new List<char>();
 
-        int n = str.Length; 
+        int n = product.Length; 
 
-
-        for(int i = 0; i <= n-1; i++) {
+        for(int i = 0; i < n; i++) {
             if (i == 0) {
                 cost++;
-                strComparison.Add(str[i]);
-            }
+                strComparison.Add(product[i]);
+            } 
             else {
-                for(int l = 1; l <= n; l++) {
-                    if(str[i] == strComparison[l]) {
+                int comparisonN = strComparison.Count()-1;
+                for(int l = 0; l <= comparisonN; l++) {     
+                    if (product[i] == strComparison[l])
+                        break;
+                    else if (product[i] != strComparison[l] && l == comparisonN) {
                         cost++;
-                    } else {
-                        strComparison.Add(str[i]);
+                        strComparison.Add(product[i]);
                     }
                 }
             }
         }
+    
         return cost;
     }
-
 }
 
 class Solution
