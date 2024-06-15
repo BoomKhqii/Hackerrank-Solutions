@@ -40,6 +40,7 @@ class Result
         i++;
         return resultRank;
     }
+
     public static List<int> climbingLeaderboard(List<int> ranked, List<int> player)
     {
         /* 
@@ -50,14 +51,16 @@ class Result
         List<int> rank = new List<int>();
         int playerCount = player.Count();
         int rankCount = ranked.Count()-1;
+        int lastRank = -1;
 
-        for(int i = 0, l = 0; i < playerCount; l++) {
+        for(int i = 0, l = 0; i < playerCount; l++, lastRank++) {
+
             if(l == ranked.Count()) {
                 rank.Add(GetRank(ref currentRank, ref l, ref i));
                 continue;
             }
-
-            if(player[i] < ranked[l]) {
+            
+            if(player[i] < ranked[l] && ranked[lastRank] != ranked[l]) {
                 currentRank++;
             } else if (player[i] < ranked[l] && l == rankCount) {
                 rank.Add(GetRank(ref currentRank, ref l, ref i));
@@ -66,47 +69,8 @@ class Result
             } else if(player[i] == ranked[l]) {
                 rank.Add(GetRank(ref currentRank, ref l, ref i));
             }
-            /*
-            if(l < ranked.Count()) {
-                i++;
-                l = 0;
-                rank.Add(currentRank);
-                currentRank = 0;
-            }
-
-            if(player[i] < ranked[l]) {
-                currentRank++;
-            } else if (player[i] == ranked[l]) {
-                currentRank++;
-                i++;
-                rank.Add(currentRank);
-                currentRank = 0;
-            } else if (player[i] > ranked[l]) {
-                i++;
-                rank.Add(currentRank);
-                currentRank = 0;
-            }
-            /*
-            if(playerI >= playerCount) {
-                i++;
-                continue;
-            }
-            if(player[i] < ranked[playerI]) {
-                currentRank++;
-            } else if (player[i] == ranked[playerI]) {
-                currentRank++;
-                i++;
-                continue;
-            } else {
-                i++;
-                continue;
-                //Console.WriteLine(player[playerI] + " " + ranked[playerI]);
-            }
-            rank.Add(currentRank);
-            */
         }
         return rank;
-        
     }
 
 }
