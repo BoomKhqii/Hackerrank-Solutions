@@ -24,39 +24,64 @@ class Result
      *  2. INTEGER_ARRAY player
      */
 
-    private static int newRank(ref int currentRank, ref int l, ref int i)
+/*
+    private static int newRank(ref int currentRank, ref int i)
     {
-        currentRank++;
+        currentRank--;
         int resultRank = currentRank;
-        currentRank = 0;
-        l = -1;
+        //currentRank = 0;
         i++;
         return resultRank;
-    }
+    }*/
 
     public static List<int> climbingLeaderboard(List<int> ranked, List<int> player)
     { 
-        int currentRank = 0;
-        List<int> rank = new List<int>();
+        List<int> newRank = new List<int>();
         ranked = ranked.Distinct().ToList();
+        int rankCount = ranked.Count()-1;
+        int currentRank = ranked.Count();
+        /*
+        5
+        10 20 40 50 100
+        5 25 50 120
 
-        for(int i = 0, l = 0; i < player.Count(); l++) {
-            if(l == ranked.Count()) {
-                rank.Add(newRank(ref currentRank, ref l, ref i));
-                continue;
-            }
+        6 4 2 1
 
-            if(player[i] < ranked[l]) {
-                currentRank++;
-            } else if(player[i] > ranked[l]) {
-                rank.Add(newRank(ref currentRank, ref l, ref i));
-            } else if(player[i] == ranked[l]) {
-                rank.Add(newRank(ref currentRank, ref l, ref i));
+        5 < 10      ++  6   6
+        25 > 10     --  5
+        25 > 20     --  4
+        25 < 40     ==  4   4     
+        50 > 40     --  3 
+        50 == 50    --  2   2
+        120 > 100   --  1   1
+        */
+        for(int i = 0; i < player.Count(); rankCount--) {
+            if(player[i] < ranked[rankCount]) {
+                if(i == 0) {
+                    currentRank++;
+                }
+                i++;
+                rankCount++;
+                newRank.Add(currentRank);
+            } else if(player[i] > ranked[rankCount]) {
+                currentRank--;
+                if(rankCount == 0){
+                    newRank.Add(currentRank);
+                    break;
+                }
+            } else if(player[i] == ranked[rankCount]){
+                if (i == 0) {
+                    newRank.Add(currentRank);
+                    i++;
+                    continue;
+                }
+                currentRank--;
+                i++;
+                newRank.Add(currentRank);
             }
         }
-        return rank;
+        return newRank;
     }
-
 }
 
 class Solution
