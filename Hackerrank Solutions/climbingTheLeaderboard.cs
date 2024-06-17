@@ -24,65 +24,34 @@ class Result
      *  2. INTEGER_ARRAY player
      */
 
-    private static int GetRank(ref int currentRank, ref int l, ref int i)
+    private static int newRank(ref int currentRank, ref int l, ref int i)
     {
         currentRank++;
         int resultRank = currentRank;
         currentRank = 0;
-        l = 0;
+        l = -1;
         i++;
         return resultRank;
     }
 
     public static List<int> climbingLeaderboard(List<int> ranked, List<int> player)
-    {
-        /* 
-        Passed
-        7
-        100 100 50 40 40 20 10
-        4
-        5 25 50 120
-
-        Failed
-        6
-        100 90 90 80 75 60
-        5
-        50 65 77 90 102
-        Output:
-        6
-        4
-        3
-        1
-        1
-        Expected Output:
-        6
-        5
-        4
-        2
-        1
-        */
+    { 
         int currentRank = 0;
         List<int> rank = new List<int>();
-        int playerCount = player.Count();
-        int rankCount = ranked.Count()-1;
-        int lastScore = 0;
+        ranked = ranked.Distinct().ToList();
 
-        for(int i = 0, l = 0; i < playerCount; l++) {
-
+        for(int i = 0, l = 0; i < player.Count(); l++) {
             if(l == ranked.Count()) {
-                rank.Add(GetRank(ref currentRank, ref l, ref i));
+                rank.Add(newRank(ref currentRank, ref l, ref i));
                 continue;
             }
 
-            if(player[i] < ranked[l] && lastScore != ranked[l]) {
+            if(player[i] < ranked[l]) {
                 currentRank++;
-                lastScore = ranked[l];
-            } else if (player[i] < ranked[l] && l == rankCount) {
-                rank.Add(GetRank(ref currentRank, ref l, ref i));
-            } else if (player[i] > ranked[l]) {
-                rank.Add(GetRank(ref currentRank, ref l, ref i));
+            } else if(player[i] > ranked[l]) {
+                rank.Add(newRank(ref currentRank, ref l, ref i));
             } else if(player[i] == ranked[l]) {
-                rank.Add(GetRank(ref currentRank, ref l, ref i));
+                rank.Add(newRank(ref currentRank, ref l, ref i));
             }
         }
         return rank;
