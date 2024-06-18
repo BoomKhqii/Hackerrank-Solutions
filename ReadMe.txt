@@ -1,0 +1,1 @@
+This is my solution in HackerRank, showing my progression.
