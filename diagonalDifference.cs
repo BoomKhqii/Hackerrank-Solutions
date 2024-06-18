@@ -14,7 +14,6 @@ using System;
 
 class Result
 {
-
     public static int diagonalDifference(List<List<int>> arr)
     {
         int length = arr.Count;
@@ -35,9 +34,7 @@ class Result
         int result = primaryDiagonal - secondaryDiagonal;
         int result_Final = Math.Abs(result);
         return result_Final;
-         
     }
-
 }
 
 class Solution

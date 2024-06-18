@@ -14,8 +14,6 @@ using System;
 
 class Result
 {
-
-
     public static void miniMaxSum(List<int> arr)
     {
         long minSum = 999999999999999999, maxSum = 0, generalSum = 0;

@@ -14,12 +14,6 @@ using System;
 
 class Result
 {
-    /*
-     * Complete the 'plusMinus' function below.
-     *
-     * The function accepts INTEGER_ARRAY arr as parameter.
-     */
-
     public static void plusMinus(List<int> arr)
     {
         int length = arr.Count();
@@ -42,7 +36,6 @@ class Result
         Console.WriteLine(resultZeros);
 
     }
-
 }
 
 class Solution

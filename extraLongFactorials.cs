@@ -23,7 +23,6 @@ class Result
         
         return temp_result;
     }
-
 }
 
 class Solution

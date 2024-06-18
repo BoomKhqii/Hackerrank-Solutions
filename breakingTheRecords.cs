@@ -14,14 +14,6 @@ using System;
 
 class Result
 {
-
-    /*
-     * Complete the 'breakingRecords' function below.
-     *
-     * The function is expected to return an INTEGER_ARRAY.
-     * The function accepts INTEGER_ARRAY scores as parameter.
-     */
-
     public static List<int> breakingRecords(List<int> scores)
     {
         List<int> result = new List<int>();
@@ -56,7 +48,6 @@ class Result
         result.Add(lowSum);
         return result;
     }
-
 }
 
 class Solution

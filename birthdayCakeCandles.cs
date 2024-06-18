@@ -14,8 +14,6 @@ using System;
 
 class Result
 {
-
-
     public static int birthdayCakeCandles(List<int> candles)
     {
         int n = candles.Count;
@@ -32,7 +30,6 @@ class Result
         }
         return result;
     }
-
 }
 
 class Solution
