@@ -14,7 +14,7 @@ using System;
 
 class Result
 {
- public static List<int> climbingLeaderboard(List<int> ranked, List<int> player)
+    public static List<int> climbingLeaderboard(List<int> ranked, List<int> player)
     { 
         List<int> newRank = new List<int>();
         ranked = ranked.Distinct().ToList();
@@ -22,13 +22,15 @@ class Result
         int currentRank = ranked.Count();
 
         for(int i = 0; i < player.Count(); rankCount--) {
-            if(player[i] < ranked[rankCount]) {
+            Console.WriteLine(player[i] + " & " + ranked[rankCount] + " ||" + i + " & " + rankCount);
+
+            if (player[i] < ranked[rankCount]) {
                 if(i == 0) {
                     currentRank++;
                 }
                 i++;
-                rankCount++;
                 newRank.Add(currentRank);
+                currentRank++;
             } else if(player[i] > ranked[rankCount]) {
                 currentRank--;
                 if(rankCount == 0){
