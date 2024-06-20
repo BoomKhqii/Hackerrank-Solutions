@@ -22,16 +22,54 @@ class Result
      * The function accepts INTEGER_ARRAY arr as parameter.
      */
 
+    // error in the swap function
+    /*
+    public static void Swap<int>(IList<int> arr, int i, int length) {
+        int tmp = arr[i];
+        arr[i] = arr[length];
+        list[length] = tmp;
+    }
+    */
+
     public static int lilysHomework(List<int> arr)
     {
         int length = arr.Count() - 1;
+        int swaps = 0;
 
-        for (int i = 0; i <= length; i++, length--;) {
-            if (arr[i] < arr[length])
-            {
-                // swap function
+        /*
+             Swap      Result
+                    [7, 15, 12, 3]
+            3 7     [3, 15, 12, 7]
+            7 15    [3, 7, 12, 15]
+            
+            3, 4, 2, 5, 1
+            1, 4, 2, 5, 3
+            1, 3, 2, 5, 4
+            1, 3, 2, 5, 4
+            1, 3, 2, 4, 5
+
+            3, 4, 2, 5, 1
+            1, 4, 2, 5, 3
+            1, 2, 4, 5, 3
+            1, 2, 3, 5, 4
+            1, 2, 3, 4, 5
+
+            3, 4, 2, 5, 1
+            
+         */
+
+        for (int i = 0; i <= length; i++) {
+            if (arr[i] > arr[length]) {
+                swaps++;
+
+                int tmp = arr[i];
+                arr[i] = arr[length];
+                arr[length] = tmp;
+            } else if () {
+
             }
         }
+        return swaps;
     }
 }
 
