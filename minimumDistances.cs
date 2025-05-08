@@ -15,7 +15,6 @@ using System;
 class Result
 {
 	/*
-	
 	Input (stdin)
 	6
 	7 1 3 4 1 7
@@ -37,31 +36,25 @@ class Result
 	{
 		int minD = int.MaxValue;
 		int currentMinD;
-		int len = a.Count;
 
-		for (int i = 0, j = 1; i < len; j++)
+		for (int i = 0, j = 1; i < a.Count; j++)
 		{
-			if (j >= len)
+			if (j >= a.Count)
 			{
-				Console.WriteLine("j >= len: " + i + " " + j);
-				i++;
-				j = i;
+				j = ++i;
 				continue;
 			}
 			else if (a[j] == int.MaxValue) continue;
 
 			if (a[i] == a[j])
 			{
-				Console.WriteLine("a[i] == a[j]: " + i + " " + j);
 				currentMinD = Math.Abs(i - j);
 				a[j] = int.MaxValue;
 
 				if (currentMinD < minD)
 					minD = currentMinD;
 
-				i++;
-				j = i;
-				continue;
+				j = ++i;
 			}
 		}
 
