@@ -14,28 +14,9 @@ using System;
 
 class Result
 {
-	/*
-	Input (stdin)
-	6
-	7 1 3 4 1 7
-	Your Output (stdout)
-	-5
-	Expected Output
-	3
-
-	Debug output
-	a[i] == a[j]: 0 5
-	a[i] == a[j]: 1 4
-	j >= len: 2 6
-	j >= len: 3 6
-	j >= len: 4 6
-	j >= len: 5 6
-
-	 */
 	public static int minimumDistances(List<int> a)
 	{
-		int minD = int.MaxValue;
-		int currentMinD;
+		int minD = -1, currentMinD;
 
 		for (int i = 0, j = 1; i < a.Count; j++)
 		{
@@ -44,21 +25,16 @@ class Result
 				j = ++i;
 				continue;
 			}
-			else if (a[j] == int.MaxValue) continue;
 
 			if (a[i] == a[j])
 			{
 				currentMinD = Math.Abs(i - j);
-				a[j] = int.MaxValue;
-
-				if (currentMinD < minD)
+				if (currentMinD < minD || minD == -1)
 					minD = currentMinD;
 
 				j = ++i;
 			}
 		}
-
-		if (minD == int.MaxValue) minD = -1;
 
 		return minD;
 	}
