@@ -15,24 +15,28 @@ using System;
 class Result
 {
 
-    /*
-     * Complete the 'bitwiseAnd' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts following parameters:
-     *  1. INTEGER N
-     *  2. INTEGER K
-     */
-
     public static int bitwiseAnd(int N, int K)
     {
         int max = 0;
+        for (int i = 1, j = 2; i <= N; j++)
+        {
+            if (j >= N)
+            {
+                i++;
+                j = i;
+                continue;
+            }
 
+            string s1 = Convert.ToString(i), s2 = Convert.ToString(j);
 
-
+            if ((Convert.ToInt32(s1) & Convert.ToInt32(s2)) < K &&
+            (Convert.ToInt32(s1) & Convert.ToInt32(s2)) > max)
+            {
+                max = Convert.ToInt32(Convert.ToInt32(s1) & Convert.ToInt32(s2));
+            }
+        }
         return max;
     }
-
 }
 
 class Solution
