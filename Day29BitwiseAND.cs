@@ -28,11 +28,10 @@ class Result
             }
 
             string s1 = Convert.ToString(i), s2 = Convert.ToString(j);
-
-            if ((Convert.ToInt32(s1) & Convert.ToInt32(s2)) < K &&
-            (Convert.ToInt32(s1) & Convert.ToInt32(s2)) > max)
+            if ((Convert.ToInt32(s1) & Convert.ToInt32(s2)) < K && (Convert.ToInt32(s1) & Convert.ToInt32(s2)) > max)
             {
                 max = Convert.ToInt32(Convert.ToInt32(s1) & Convert.ToInt32(s2));
+                if (max == K) return max;
             }
         }
         return max;
