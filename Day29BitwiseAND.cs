@@ -14,24 +14,15 @@ using System;
 
 class Result
 {
-
     public static int bitwiseAnd(int N, int K)
     {
         int max = 0;
-        for (int i = 1, j = 2; i <= N; j++)
+        for (int i = 1; i <= N; i++)
         {
-            if (j >= N)
+            for (int j = i + 1; j <= N; j++)
             {
-                i++;
-                j = i;
-                continue;
-            }
-
-            string s1 = Convert.ToString(i), s2 = Convert.ToString(j);
-            if ((Convert.ToInt32(s1) & Convert.ToInt32(s2)) < K && (Convert.ToInt32(s1) & Convert.ToInt32(s2)) > max)
-            {
-                max = Convert.ToInt32(Convert.ToInt32(s1) & Convert.ToInt32(s2));
-                if (max == K) return max;
+                if ((i & j) < K && (i & j) > max)
+                    max = i & j;
             }
         }
         return max;
